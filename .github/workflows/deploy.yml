@@ -1,0 +1,24 @@
+name: Deploy to Google Cloud VM
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: SSH to Google Cloud VM and Deploy
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: 35.223.104.63
+          username: your-gcloud-user
+          key: ~/.ssh/id_rsa
+          script: |
+            cd ~/next-app
+            ./deploy.sh
