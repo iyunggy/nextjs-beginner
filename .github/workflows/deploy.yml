@@ -17,7 +17,7 @@ jobs:
         uses: appleboy/ssh-action@v0.1.7
         with:
           host: 35.223.104.63
-          username: your-gcloud-user
+          username: ubuntu
           key: ~/.ssh/id_rsa
           script: |
             cd ~/next-app
