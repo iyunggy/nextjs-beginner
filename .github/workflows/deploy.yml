@@ -16,7 +16,7 @@ jobs:
       - name: Copy files to VM
         uses: appleboy/scp-action@master
         with:
-          host: ${{ secrets.GCP_VM_IP }}
+          host: 35.223.104.63
           username: ${{ secrets.GCP_VM_USER }}
           key: ${{ secrets.GCP_SSH_PRIVATE_KEY }}
           source: "."
@@ -25,7 +25,7 @@ jobs:
       - name: Run Deployment Script
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.GCP_VM_IP }}
+          host: 35.223.104.63
           username: ${{ secrets.GCP_VM_USER }}
           key: ${{ secrets.GCP_SSH_PRIVATE_KEY }}
           script: |
