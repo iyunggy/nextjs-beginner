@@ -3,34 +3,25 @@ name: Deploy Next.js to Google Cloud VM
 on:
   push:
     branches:
-      - main  # Jalankan saat ada push ke branch main
+      - main  # Trigger jika ada push ke branch main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Copy files to VM
-        uses: appleboy/scp-action@master
-        with:
-          host: 35.223.104.63
-          username: finance
-          key: ~/.ssh/id_rsa
-          source: "."
-          target: "/home/finance/nextjs-beginner"
-
-      - name: Run Deployment Script
+      - name: Deploy to Google Cloud VM
         uses: appleboy/ssh-action@master
         with:
           host: 35.223.104.63
           username: finance
-          key: ~/.ssh/id_rsa
+          key: cat ~/.ssh/id_rsa
           script: |
-            cd /home/finance/nextjs-beginner
+            cd /home/finance/nextjs-beginner/next-app
             git pull origin main
             npm install
             npm run build
-            pm2 restart all
+            pm2 restart all || pm2 start npm --name "next-app" -- run start
