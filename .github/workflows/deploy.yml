@@ -18,7 +18,7 @@ jobs:
         with:
           host: 35.223.104.63
           username: ${{ secrets.GCP_VM_USER }}
-          key: ${{ secrets.GCP_SSH_PRIVATE_KEY }}
+          key: ~/.ssh/id_rsa
           source: "."
           target: "/home/finance/nextjs-beginner"
 
@@ -27,7 +27,7 @@ jobs:
         with:
           host: 35.223.104.63
           username: ${{ secrets.GCP_VM_USER }}
-          key: ${{ secrets.GCP_SSH_PRIVATE_KEY }}
+          key: ~/.ssh/id_rsa
           script: |
             cd /home/finance/nextjs-beginner
             git pull origin main
