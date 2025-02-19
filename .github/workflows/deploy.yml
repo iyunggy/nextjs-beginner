@@ -17,7 +17,7 @@ jobs:
         uses: appleboy/scp-action@master
         with:
           host: 35.223.104.63
-          username: ${{ secrets.GCP_VM_USER }}
+          username: finance
           key: ~/.ssh/id_rsa
           source: "."
           target: "/home/finance/nextjs-beginner"
@@ -26,7 +26,7 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: 35.223.104.63
-          username: ${{ secrets.GCP_VM_USER }}
+          username: finance
           key: ~/.ssh/id_rsa
           script: |
             cd /home/finance/nextjs-beginner
